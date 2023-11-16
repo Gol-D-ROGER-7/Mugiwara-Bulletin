@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+   height: 100%;
+   width: 100%;
+}
+
+.wrapper {
+    height: 100vh;
+    /* background: linear-gradient(rgba(251, 228, 216, 1) 6%, rgba(223, 182, 178, 1) 19%, rgba(136, 85, 68, 1) 41%, rgba(82, 43, 91, 1) 60%, rgba(43, 18, 76, 1) 82%, rgba(25, 0, 25, 1) 98%); */
+    background: linear-gradient(to bottom, #fff, #DADDE2, #B1BDC5, #889FA5, #628281, #43655A);
+}
