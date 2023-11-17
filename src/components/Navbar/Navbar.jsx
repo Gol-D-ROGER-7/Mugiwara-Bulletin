@@ -16,7 +16,7 @@ const Navbar = () => {
            smooth={true} 
            offset={50} 
            duration={500} >
-          <img src={img} alt="logo" height={200} width={220} />
+          <img src={img} alt="logo"  />
         </Link>
 
         <div className="menu">

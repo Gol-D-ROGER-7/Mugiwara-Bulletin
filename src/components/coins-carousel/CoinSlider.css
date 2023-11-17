@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Libre+Baskerville&family=Poppins:ital,wght@0,600;1,400&display=swap');
+
+
+.slider-wrapper {
+    /* width: 100%; */
+    /* height: 100px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #fff;
+    border-radius: 9px;
+}
+.slider {
+    width: 100%;
+    /* height: 100px; */
+    position: relative;
+    /* background-color: white; */
+    display: flex;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent,  #fff 10%, #fff 90%, transparent) ;
+}
+.slide {
+    /* height: 100px; */
+    animation: slideshow 110s linear infinite;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    /* border: 2px solid black; */
+}
+.coins {
+    color: #190019;
+    transition: 0.5s;
+    display: flex; 
+    flex-direction: column;
+    gap: 5px;
+    width: 150px;
+    align-items: flex-start;
+}
+.coins span {
+    font-family: 'Josefin Sans';
+    font-family: 'Libre Baskerville';
+}
+.coin-price {
+    align-items: flex-start;
+    font-family: 'Poppins';
+}
+@keyframes slideshow {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-1080px * 10));
+    }
+}
+@media (max-width: 800px) {
+    .slider-wrapper {
+        border: 1px solid #000;
+
+    }
+    .slide {
+        height: 50px;
+    }
+    .slide img {
+        height: 35px;
+        width: 40px;
+    }
+    .coins span {
+        font-family: 'Josefin Sans';
+        font-family: 'Libre Baskerville';
+        font-size: 10px;
+    }
+    .coin-price {
+        align-items: flex-start;
+        font-family: 'Poppins';
+    }
+}

@@ -1,0 +1,144 @@
+import React, { useState, useEffect } from 'react'
+import axios from 'axios';
+import "./CoinSlider.css"
+
+const CoinSlider = () => {
+    const [ coinData, setCoinData] = useState([]);
+
+    const getData = async () => {
+
+        const options = {
+            method: 'GET',
+            url: 'https://coinranking1.p.rapidapi.com/coins',
+            headers: {
+                'X-RapidAPI-Key': 'e8067d888cmshd2b538d56dcd82bp111738jsn6ddc130cbe29',
+                'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
+            }
+        };
+
+        try {
+            const response = await axios.request(options);
+            console.log(response.data.data.coins);
+            setCoinData(response.data.data.coins)
+            // console.log(coinData)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    useEffect(() => {
+        getData();
+    }, [])
+    return (
+        
+        <>
+            <div className="slider-wrapper">
+                <div className="slider">
+                {coinData.map((token) => {
+                    return (
+                        <>
+                            <div className="slide" key={token.uuid}>
+                                <img src={token.iconUrl} alt="coin-img" height={50} width={50}/>
+                                <div className="coins">
+                                    <span className="coin-name">{token.name} <span className="coin-symbol">({token.symbol})</span></span>
+                                    <div className="coin-price">{Math.round(token.price).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</div>
+                                </div>
+                            </div>
+                        </>
+                    )
+                })}
+                {coinData.map((token) => {
+                    return (
+                        <>
+                            <div className="slide" key={token.uuid}>
+                                <img src={token.iconUrl} alt="coin-img" height={50} width={50}/>
+                                <div className="coins">
+                                    <span className="coin-name">{token.name} <span className="coin-symbol">({token.symbol})</span></span>
+                                    <div className="coin-price">{Math.round(token.price).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</div>
+                                </div>
+                            </div>
+                        </>
+                    )
+                })}
+                    {/* <div className="slide">
+                        <img src="https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg" alt="coin-img" height={50} width={50}/>
+                        <div className="coins">
+                            <span className="coin-name">Bitcoin <span className="coin-symbol">(BTC)</span></span>
+                            <div className="coin-price">$35,000</div>
+                        </div>
+                        <img src="https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg" alt="coin-img" height={50} width={50}/>
+                        <div className="coins">
+                            <span className="coin-name">Bitcoin <span className="coin-symbol">(BTC)</span></span>
+                            <div className="coin-price">$35,000</div>
+                        </div>
+                        <img src="https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg" alt="coin-img" height={50} width={50}/>
+                        <div className="coins">
+                            <span className="coin-name">Bitcoin <span className="coin-symbol">(BTC)</span></span>
+                            <div className="coin-price">$35,000</div>
+                        </div>
+                        <img src="https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg" alt="coin-img" height={50} width={50}/>
+                        <div className="coins">
+                            <span className="coin-name">Bitcoin <span className="coin-symbol">(BTC)</span></span>
+                            <div className="coin-price">$35,000</div>
+                        </div>
+                        <img src="https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg" alt="coin-img" height={50} width={50}/>
+                        <div className="coins">
+                            <span className="coin-name">Bitcoin <span className="coin-symbol">(BTC)</span></span>
+                            <div className="coin-price">$35,000</div>
+                        </div>
+                        <img src="https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg" alt="coin-img" height={50} width={50}/>
+                        <div className="coins">
+                            <span className="coin-name">Bitcoin <span className="coin-symbol">(BTC)</span></span>
+                            <div className="coin-price">$35,000</div>
+                        </div>
+
+                        <img src="https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg" alt="coin-img" height={50} width={50}/>
+                        <div className="coins">
+                            <span className="coin-name">Bitcoin <span className="coin-symbol">(BTC)</span></span>
+                            <div className="coin-price">$35,000</div>
+                        </div>
+                    </div>
+                    <div className="slide">
+                        <img src="https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg" alt="coin-img" height={50} width={50}/>
+                        <div className="coins">
+                            <span className="coin-name">Bitcoin <span className="coin-symbol">(BTC)</span></span>
+                            <div className="coin-price">$35,000</div>
+                        </div>
+                        <img src="https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg" alt="coin-img" height={50} width={50}/>
+                        <div className="coins">
+                            <span className="coin-name">Bitcoin <span className="coin-symbol">(BTC)</span></span>
+                            <div className="coin-price">$35,000</div>
+                        </div>
+                        <img src="https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg" alt="coin-img" height={50} width={50}/>
+                        <div className="coins">
+                            <span className="coin-name">Bitcoin <span className="coin-symbol">(BTC)</span></span>
+                            <div className="coin-price">$35,000</div>
+                        </div>
+                        <img src="https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg" alt="coin-img" height={50} width={50}/>
+                        <div className="coins">
+                            <span className="coin-name">Bitcoin <span className="coin-symbol">(BTC)</span></span>
+                            <div className="coin-price">$35,000</div>
+                        </div>
+                        <img src="https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg" alt="coin-img" height={50} width={50}/>
+                        <div className="coins">
+                            <span className="coin-name">Bitcoin <span className="coin-symbol">(BTC)</span></span>
+                            <div className="coin-price">$35,000</div>
+                        </div>
+                        <img src="https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg" alt="coin-img" height={50} width={50}/>
+                        <div className="coins">
+                            <span className="coin-name">Bitcoin <span className="coin-symbol">(BTC)</span></span>
+                            <div className="coin-price">$35,000</div>
+                        </div>
+
+                        <img src="https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg" alt="coin-img" height={50} width={50}/>
+                        <div className="coins">
+                            <span className="coin-name">Bitcoin <span className="coin-symbol">(BTC)</span></span>
+                            <div className="coin-price">$35,000</div>
+                        </div>
+                    </div> */}
+                </div>
+            </div>
+        </>
+    )
+}
+
+export default CoinSlider

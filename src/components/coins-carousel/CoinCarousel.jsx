@@ -19,7 +19,7 @@ const CoinCarousel = () => {
 
         try {
             const response = await axios.request(options);
-            // console.log(response.data.data.coins[0].symbol);
+            console.log(response.data.data.coins);
             setCoinData(response.data.data.coins)
             console.log(coinData)
         } catch (error) {
@@ -30,9 +30,9 @@ const CoinCarousel = () => {
         getData();
     }, [])
     return (
-        <div className='coins-carousel'>
+        <div className='coins-carousel slider-area' >  
             {/* <button onClick={getData}>Get Coins</button> */}
-            <div className="coins-container">
+            <div className="coins-container wrapper">
                 {/* <div className="coins-wrapper">
                     <img src="https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg" alt="coin-img" height={50} width={50}/>
                     <div className="coins">
@@ -43,7 +43,7 @@ const CoinCarousel = () => {
                 {coinData.map((token) => {
                     return (
                         <>
-                            <div className="coins-wrapper" key={token.uuid}>
+                            <div className="coins-wrapper item" key={token.uuid}>
                                 <img src={token.iconUrl} alt="coin-img" height={50} width={50}/>
                                 <div className="coins">
                                     <span className="coin-name">{token.name} <span className="coin-symbol">({token.symbol})</span></span>
@@ -53,6 +53,20 @@ const CoinCarousel = () => {
                         </>
                     )
                 })}
+                {coinData.map((token) => {
+                    return (
+                        <>
+                            <div className="coins-wrapper item" key={token.uuid}>
+                                <img src={token.iconUrl} alt="coin-img" height={50} width={50}/>
+                                <div className="coins">
+                                    <span className="coin-name">{token.name} <span className="coin-symbol">({token.symbol})</span></span>
+                                    <div className="coin-price">{Math.round(token.price).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</div>
+                                </div>
+                            </div>
+                        </>
+                    )
+                })}
+                
             </div>
         </div>
     )
